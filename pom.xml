@@ -3,18 +3,23 @@
    <groupId>com.pos.domain</groupId>
    <version>1.0</version>
    <artifactId>thdomain</artifactId>
-   <packaging>bundle</packaging>
+   <packaging>jar</packaging>
    <name>posdomain</name>
    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java-version>1.8</java-version>
+        <java-version>1.7</java-version>
+         <org.springframework-version>4.0.0.RELEASE</org.springframework-version>
    </properties>
 
    <repositories>
-        <repository>
-            <id>java.net2</id>
-            <name>Repository hosting the jee6 artifacts</name>
-            <url>http://download.java.net/maven/2</url>
+   		<repository>
+          <id>maven-central</id>
+          <name>Maven Repository Switchboard</name>
+          <layout>default</layout>
+          <url>http://repo1.maven.org/maven2</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
         </repository>
         <repository>
             <id>sonatype-oss-repository</id>
@@ -33,15 +38,60 @@
         </repository>
     </repositories>
 
-   <dependencyManagement>
+   
       <dependencies>
-         <dependency>
-            <groupId>root.project.projects</groupId>
-            <artifactId>logging</artifactId>
-            <version>1.0</version>
-         </dependency>
+      
+      <!-- joda time support -->
+        <dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.2</version>
+		</dependency>
+        <dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.2.11</version>
+		</dependency>
+        
+         <!-- Persistence -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.2.5.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.6</version>
+		</dependency>
+        <!-- Spring Data -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.4.1.RELEASE</version>
+        </dependency>
       </dependencies>
-   </dependencyManagement>
+   
    <build>
         <plugins>
             <plugin>
@@ -52,11 +102,6 @@
                     <source>${java-version}</source>
                     <target>${java-version}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.1.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -77,7 +122,7 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>initialize</phase>
+                        <phase>install</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -103,7 +148,7 @@
             </plugin>
             
             <!-- Bundle up the target directory -->
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
@@ -113,7 +158,7 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                     </instructions>
                 </configuration>
-            </plugin>
+            </plugin> -->
 
             <!-- Add generated classes to classpath -->
             <plugin>
@@ -152,7 +197,7 @@
                     <schemaDirectory>${project.build.directory}/resources</schemaDirectory>
                     <schemaIncludes>
                         <schemaInclude>data/*/*.xsd</schemaInclude>
-                        <schemaInclude>service/*/*/*.xsd</schemaInclude>
+                        <!-- <schemaInclude>service/*/*/*.xsd</schemaInclude> -->
                     </schemaIncludes>
                     <bindingDirectory>${project.build.directory}/resources/bindings</bindingDirectory>
                     <generateDirectory>${generated.source.directory}</generateDirectory>
