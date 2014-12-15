@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://goland.com/rest/3/service" 
+	xmlns:blreq="http://goland.com/rest/3/data/blog/blogRequest"
+	xmlns:blres="http://goland.com/rest/3/data/blog/blogResponse"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	version="v3">
+
+	<xs:import schemaLocation="../data/blog/blogRequest.xsd"
+		namespace="http://goland.com/rest/3/data/blog/blogRequest" />
+	<xs:import schemaLocation="../data/blog/blogResponse.xsd"
+		namespace="http://goland.com/rest/3/data/blog/blogResponse" />
+
+	<!-- reuse namespace for any no. of requests -->
+
+	<!-- Map schema to custom package <xs:annotation> <xs:appinfo> 
+	 <jxb:schemaBindings> 
+		<jxb:package name="com.pos.domain.entities.blog"/>
+     </jxb:schemaBindings> -->
+
+	<!-- Root element <xsd:element name="blogRequest"> <xsd:annotation> <xsd:appinfo> 
+		<jxb:class name="BlogRequest"/> </xsd:appinfo> </xsd:annotation> <xsd:complexType> 
+		<xsd:sequence> <xsd:element name="post" type="blreq:Post" minOccurs="0" maxOccurs="unbounded"/> 
+		</xsd:sequence> </xsd:complexType> </xsd:element> -->
+
+	<xs:complexType name="blogRequest">
+		<xs:sequence>
+			<xs:element name="title" type="blreq:title" maxOccurs="1"
+				minOccurs="1">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="blogResponse">
+		<xs:sequence>
+			<xs:element name="status" type="blres:status" maxOccurs="1"
+				minOccurs="1">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

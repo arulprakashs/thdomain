@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="unqualified" 
+	targetNamespace="http://goland.com/rest/3/data/blog/blogRequest"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	jxb:extensionBindingPrefixes="xjc" jxb:version="2.0"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" 
+	version="1">
+
+
+	<xs:simpleType name="title">
+		<xs:annotation>
+			<xs:documentation>
+				title of the blog
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="1024" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="author">
+		<xs:annotation>
+			<xs:documentation>
+				posted author
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="200" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="date">
+		<xs:annotation>
+			<xs:documentation>
+				post date
+			</xs:documentation>
+			<xs:appinfo>
+				<xjc:javaType adapter="nz.net.ultraq.jaxb.adapters.XMLDateTimeAdapter"
+					name="org.joda.time.DateTime" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:date" />
+	</xs:simpleType>
+
+
+	<xs:simpleType name="content">
+		<xs:annotation>
+			<xs:documentation>
+				content
+			</xs:documentation>
+			<xs:appinfo>
+				<xjc:javaType adapter="nz.net.ultraq.jaxb.adapters.XMLCDataAdapter"
+					name="java.lang.String" />
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="2048" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Post type <xs:complexType name="Post"> <xs:sequence> <xs:element name="title" 
+		type="xs:string"/> <xs:element name="author" type="xs:string"/> <xs:element 
+		name="date" type="xs:date"> <xs:annotation> <xs:appinfo> <xjc:javaType adapter="nz.net.ultraq.jaxb.adapters.XMLDateTimeAdapter" 
+		name="org.joda.time.DateTime"/> </xs:appinfo> </xs:annotation> </xs:element> 
+		<xs:element name="content" type="xs:string"> <xs:annotation> <xs:appinfo> 
+		<xjc:javaType adapter="nz.net.ultraq.jaxb.adapters.XMLCDataAdapter" name="java.lang.String"/> 
+		</xs:appinfo> </xs:annotation> </xs:element> </xs:sequence> </xs:complexType> -->
+
+</xs:schema>

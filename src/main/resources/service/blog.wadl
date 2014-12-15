@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:tns="http://public.domain.gdl.optus.com.au/api/v3/customerIdentityService"
+             xmlns:json="http://public.domain.gdl.optus.com.au/rest/v3/common-json"
+             xsi:schemaLocation="
+             http://wadl.dev.java.net/2009/02 wadl20090202.xsd
+             http://goland.com/blog blog.xsd">
+
+    <resources base="http://public.domain.gdl.optus.com.au/api/v3/blog">
+        <resource path="updatePostBlog" id="updatePostBlog">
+            <method name="POST" id="updatePostBlog">
+                <doc xml:lang="en" title="Query Customer Details using a Customer Identity">
+                    This method is the query method that retrieves the details of a customer
+                    using a given customer identity or uuid.
+                </doc>
+                <request>
+                    <representation mediaType="application/json"/>   
+                </request>
+                <response status="200">
+                    <representation mediaType="application/json"/>
+                </response>
+                <response status="400">
+                </response>
+                <response status="404">
+                </response>
+            </method>
+
+        </resource>
+    </resources>
+</application>

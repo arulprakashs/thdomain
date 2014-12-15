@@ -52,7 +52,14 @@
 			<artifactId>jaxb-impl</artifactId>
 			<version>2.2.11</version>
 		</dependency>
-        
+       
+       <dependency>
+		    <groupId>com.sun.xml.bind</groupId>
+		    <artifactId>jaxb-impl</artifactId>
+		    <version>2.0.1</version>
+		</dependency>
+       
+       		
          <!-- Persistence -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -90,6 +97,21 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>1.4.1.RELEASE</version>
         </dependency>
+        
+       <!-- add the following jackson dependencies so that spring can serialize POJO to JSOn -->
+        <dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-core-asl</artifactId>
+		    <version>1.9.13</version>
+		</dependency>
+
+        <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-mapper-asl</artifactId>
+          <version>1.9.13</version>
+        </dependency>
+        
+        
       </dependencies>
    
    <build>
@@ -122,7 +144,7 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>install</phase>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -186,6 +208,7 @@
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.11.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -197,7 +220,7 @@
                     <schemaDirectory>${project.build.directory}/resources</schemaDirectory>
                     <schemaIncludes>
                         <schemaInclude>data/*/*.xsd</schemaInclude>
-                        <!-- <schemaInclude>service/*/*/*.xsd</schemaInclude> -->
+                        <schemaInclude>service/*.xsd</schemaInclude>
                     </schemaIncludes>
                     <bindingDirectory>${project.build.directory}/resources/bindings</bindingDirectory>
                     <generateDirectory>${generated.source.directory}</generateDirectory>
@@ -226,6 +249,34 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.3</version>
             </plugin>
+            
+             <!-- <plugin>
+
+                <groupId>au.com.optus.gdl.rest.model</groupId>
+                <artifactId>gdl-rest-model-generator-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+
+                    Public Services
+
+                    The Pixable Controller
+                    <execution>
+                        <id>generate-controllers-blog</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-controllers</goal>
+                        </goals>
+                        <configuration>
+                            <wadl>src/main/resources/service/blog.wadl</wadl>
+                            <outputDirectory>${project.build.directory}/generated-sources/spring/controllers</outputDirectory>
+                            <baseUri>http://public.domain.gdl.optus.com.au/api/</baseUri>
+                            <basePackage>com.pos</basePackage>
+                            <includeHeaders>true</includeHeaders>
+                            <namespace>blog</namespace>
+                        </configuration>
+                    </execution>
+                </executions>
+              </plugin> -->
         </plugins>
     </build>
 </project>
