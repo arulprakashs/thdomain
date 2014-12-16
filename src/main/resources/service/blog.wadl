@@ -9,17 +9,17 @@
              http://goland.com/blog blog.xsd">
 
     <resources base="http://public.domain.gdl.optus.com.au/api/v3/blog">
-        <resource path="updatePostBlog" id="updatePostBlog">
-            <method name="POST" id="updatePostBlog">
+        <resource path="getBlog" id="getBlog">
+            <method name="POST" id="getBlog">
                 <doc xml:lang="en" title="Query Customer Details using a Customer Identity">
                     This method is the query method that retrieves the details of a customer
                     using a given customer identity or uuid.
                 </doc>
                 <request>
-                    <representation mediaType="application/json"/>   
+                    <representation mediaType="application/json" json:serialize="com.goland.rest._3.service.BlogRequest"/>   
                 </request>
                 <response status="200">
-                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/json" json:serialize="com.goland.rest._3.service.BlogResponse"/>
                 </response>
                 <response status="400">
                 </response>

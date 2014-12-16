@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="unqualified" 
+	targetNamespace="http://goland.com/rest/3/data/blog/Request"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:simpleType name="title">
+		<xs:annotation>
+			<xs:documentation>
+				title of the blog
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="1024" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="author">
+		<xs:annotation>
+			<xs:documentation>
+				posted author
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+			<xs:maxLength value="200" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="status">
+        <xs:annotation>
+            <xs:documentation>
+                status
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="1024" />
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
